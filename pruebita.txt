@@ -1,0 +1,11 @@
+
+
+para x hasta 12 saltando 1 hacer
+  imprimir x
+
+
+si Y 2 == entonces
+  x= 3 9 +
+fin si
+
+silicio=30
