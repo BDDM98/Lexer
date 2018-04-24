@@ -1,5 +1,4 @@
 
-
 para x hasta 12 saltando 1 hacer
   imprimir x
 

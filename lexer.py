@@ -1,12 +1,12 @@
 import ply.lex as lex
 
-tokens = [  'VARIABLE','NUMERO','SUMA','RESTA','MULTIPLICACION','DIVISION', 'IGUALDAD','POTENCIACION','ESIGUAL','NEGACION','CONDICIONSI','CICLOPARA','MAYOR','MENOR','MAYORIGUAL','MENORIGUAL','ABRIRPARENTESIS','CERRARPARENTESIS']
+tokens = [  'VARIABLE','NUMERO','SUMA','RESTA','MULTIPLICACION','DIVISION','IGUALDAD','POTENCIACION','ESIGUAL','NEGACION','CONDICIONSI','CICLOPARA','MAYOR','MENOR','MAYORIGUAL','MENORIGUAL','ABRIRPARENTESIS','CERRARPARENTESIS','DOSPUNTOS','CADENA_CARACTERES']
 
 condicionLIST=['SI','SINO','ENTONCES']
 
 paraList=['PARA','HASTA','SALTAR','HACER']
 
-t_ignore = ' \t'
+t_ignore = ' \n'
 t_SUMA = r'\+'
 t_RESTA = r'-'
 t_MULTIPLICACION = r'\*'
@@ -20,13 +20,9 @@ t_MAYOR = r'>'
 t_MENOR = r'<'
 t_MAYORIGUAL    = r'>='
 t_MENORIGUAL    = r'<='
-t_ABRIRPARENTESIS = r'('
-t_CERRARPARENTESIS = r')'
-
-def t_COMENTARIO(t):
-    r'\#.*'
-    pass
-
+t_ABRIRPARENTESIS = r'\('
+t_CERRARPARENTESIS = r'\)'
+t_DOSPUNTOS	= ':'
 
 def t_VARIABLE(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
@@ -39,6 +35,9 @@ def t_VARIABLE(t):
                 t.type = 'CICLOPARA'
                 return t
     return t
+def t_COMENTARIO(t):
+    r'\#.*'
+    pass
 
 
 def t_NUMERO(t):
@@ -51,7 +50,7 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-postfija="postfija.txt"
+postfija="pruebita.txt"
 listaExpresiones = [x.strip('\n') for x in open(postfija, "r").readlines()]
 
 
